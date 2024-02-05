@@ -1,5 +1,5 @@
 '''
-Task complexity: 'medium'
+Task complexity: medium
 
 You are given two non-empty linked lists representing two non-negative integers. 
 The digits are stored in reverse order, and each of their nodes contains a single digit. 
@@ -43,7 +43,6 @@ Constraints:
 
 '''
 
-
 class ListNode:
     def __init__(self, val = 0, next=None):
         self.val = val
@@ -57,17 +56,18 @@ def addTwoNumbers(l1: ListNode, l2:ListNode) -> ListNode:
 
     while l1 != None or l2 != None or add_one != 0:
         val_l1 = l1.val if l1 else 0
-        val_l2 = l2.val if l2 else 0 
+        val_l2 = l2.val if l2 else 0
 
         sum_nodes = val_l1 + val_l2 + add_one
         temp_node.val = sum_nodes % 10
         add_one = sum_nodes // 10
+        l1 = l1.next if l1 else None
+        l2 = l2.next if l2 else None
+        if not (l1 != None or l2 != None or add_one != 0): return head
         new_node = ListNode(0)
         temp_node.next = new_node
-        temp_node = new_node
-        l1 = l1.next if l1 else None
-        l2 = l2.next if l2 else None            
-    return head
+        temp_node = temp_node.next
+
 
 if __name__ == '__main__':
     l1 = ListNode(2, ListNode(4, ListNode(3)))
